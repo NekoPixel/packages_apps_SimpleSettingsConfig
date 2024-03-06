@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2020 The Proton AOSP Project
+ * Copyright (C) 2024 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.protonaosp.deviceconfig;
+package org.lineageos.settingsconfig;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,12 +24,12 @@ import android.provider.DeviceConfig;
 import android.util.Log;
 
 public class BootReceiver extends BroadcastReceiver {
-    private static final String TAG = "SimpleDeviceConfig";
+    private static final String TAG = "SimpleSettingsConfig";
 
     @Override
     public void onReceive(Context context, Intent intent) {
         new Thread(() -> {
-            Log.i(TAG, "Updating device config at boot");
+            Log.i(TAG, "Updating settings storage at boot");
             updateDefaultConfigs(context);
         }).start();
     }
