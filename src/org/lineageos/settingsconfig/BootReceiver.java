@@ -20,7 +20,7 @@ package org.lineageos.settingsconfig;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.DeviceConfig;
+import android.provider.Settings;
 import android.util.Log;
 
 public class BootReceiver extends BroadcastReceiver {
@@ -55,7 +55,22 @@ public class BootReceiver extends BroadcastReceiver {
                 value = kv[1];
             }
 
-            DeviceConfig.setProperty(namespace, key, value, true);
+            switch (namespace) {
+                case "global":
+                    Settings.Global.putString(context.getContentResolver(), key, value);
+                    break;
+
+                case "secure":
+                    Settings.Secure.putString(context.getContentResolver(), key, value);
+                    break;
+
+                case "system":
+                    Settings.System.putString(context.getContentResolver(), key, value);
+                    break;
+
+                default:
+                    Log.e(TAG, "Namespace '" + namespace + "' is invalid.");
+            }
         }
     }
 }

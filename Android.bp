@@ -16,10 +16,7 @@
 android_app {
     name: "SimpleSettingsConfig",
     srcs: ["src/**/*.java"],
-    resource_dirs: ["res"],
-    platform_apis: true,
     system_ext_specific: true,
+    sdk_version: "current",
     certificate: "platform",
-    privileged: true,
-    manifest: "AndroidManifest.xml",
 }
